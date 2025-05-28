@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercices de Grammaire - Nominalisation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f7;
+      padding: 20px;
+      color: #1d1d1f;
+    }
+
+    .module-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #FF9500 0%, #FF375F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .exercise-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: white;
+    }
+
+    .badge-reformulation {
+      background: linear-gradient(135deg, #FF9500 0%, #FF375F 100%);
+    }
+
+    .instructions {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      color: #3C3C43;
+    }
+
+    .example-box {
+      background: linear-gradient(135deg, rgba(255, 149, 0, 0.08) 0%, rgba(255, 55, 95, 0.05) 100%);
+      border: 1px solid rgba(255, 149, 0, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .example-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #FF9500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .example-content {
+      font-style: italic;
+      color: #3C3C43;
+    }
+
+    .example-content strong {
+      color: #FF375F;
+      font-weight: 600;
+    }
+
+    .exercise-item {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .exercise-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .sentence-number {
+      font-weight: 600;
+      color: #FF9500;
+      margin-bottom: 8px;
+    }
+
+    .original-sentence {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 60px;
+      padding: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      resize: vertical;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #FF9500;
+      box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.1);
+    }
+
+    .check-btn {
+      background: linear-gradient(135deg, #FF9500 0%, #FF375F 100%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 12px;
+    }
+
+    .check-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(255, 149, 0, 0.2);
+    }
+
+    .check-btn:active {
+      transform: translateY(0);
+    }
+
+    .feedback {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .feedback.correct {
+      background: linear-gradient(135deg, rgba(52, 199, 89, 0.1) 0%, rgba(48, 209, 88, 0.05) 100%);
+      border: 1px solid rgba(52, 199, 89, 0.2);
+      color: #34C759;
+    }
+
+    .feedback.suggestion {
+      background: linear-gradient(135deg, rgba(255, 149, 0, 0.1) 0%, rgba(255, 55, 95, 0.05) 100%);
+      border: 1px solid rgba(255, 149, 0, 0.2);
+      color: #FF9500;
+    }
+
+    .solutions-btn {
+      background: linear-gradient(135deg, #5856D6 0%, #7C7AFF 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin: 24px auto 0;
+      display: block;
+    }
+
+    .solutions-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(88, 86, 214, 0.2);
+    }
+
+    .solutions-box {
+      display: none;
+      margin-top: 24px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(88, 86, 214, 0.08) 0%, rgba(124, 122, 255, 0.05) 100%);
+      border: 1px solid rgba(88, 86, 214, 0.2);
+      border-radius: 12px;
+      animation: slideIn 0.3s ease;
+    }
+
+    .solutions-title {
+      font-weight: 600;
+      color: #5856D6;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .solution-item {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .solution-item strong {
+      color: #5856D6;
+    }
+
+    @media (max-width: 600px) {
+      .module-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="module-container">
+    <h2>Nominalisation et modalisation</h2>
+    
+    <div class="exercise-header">
+      <span class="badge badge-reformulation">Reformulation</span>
+    </div>
+
+    <p class="instructions">
+      Reformulez ces phrases en utilisant des substantifs (noms) plutôt que des verbes, tout en conservant le sens :
+    </p>
+
+    <div class="example-box">
+      <div class="example-title">Exemple</div>
+      <div class="example-content">
+        <p>"Les scientifiques étudient la nature pour développer de nouvelles technologies."</p>
+        <p>→ "L'<strong>étude</strong> de la nature par les scientifiques permet le <strong>développement</strong> de nouvelles technologies."</p>
+      </div>
+    </div>
+
+    <div class="exercise-item">
+      <div class="sentence-number">Phrase 1</div>
+      <div class="original-sentence">
+        "Le biomimétisme, c'est s'inspirer de la nature pour créer de nouvelles technologies durables."
+      </div>
+      <textarea id="answer1" placeholder="Votre reformulation..."></textarea>
+      <button class="check-btn" onclick="checkAnswer(1)">Vérifier</button>
+      <div id="feedback1" class="feedback"></div>
+    </div>
+
+    <div class="exercise-item">
+      <div class="sentence-number">Phrase 2</div>
+      <div class="original-sentence">
+        "Léonard de Vinci observe la nature et en tire des enseignements pour ses inventions."
+      </div>
+      <textarea id="answer2" placeholder="Votre reformulation..."></textarea>
+      <button class="check-btn" onclick="checkAnswer(2)">Vérifier</button>
+      <div id="feedback2" class="feedback"></div>
+    </div>
+
+    <button class="solutions-btn" onclick="toggleSolutions()">Voir les solutions</button>
+    
+    <div id="solutions" class="solutions-box">
+      <div class="solutions-title">Solutions possibles</div>
+      <div class="solution-item">
+        <strong>1.</strong> "Le biomimétisme repose sur <strong>l'inspiration</strong> issue de la nature pour <strong>la création</strong> de nouvelles technologies durables."<br>
+        ou "Le biomimétisme correspond à <strong>une démarche d'inspiration</strong> naturelle visant à <strong>la conception</strong> de technologies durables."
+      </div>
+      <div class="solution-item">
+        <strong>2.</strong> "<strong>L'observation</strong> de la nature par Léonard de Vinci lui permet <strong>l'extraction d'enseignements</strong> applicables à ses inventions."<br>
+        ou "Léonard de Vinci procède à <strong>l'observation</strong> de la nature, source <strong>d'enseignements</strong> pour ses inventions."
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkAnswer(num) {
+      const answer = document.getElementById(`answer${num}`).value.toLowerCase();
+      const feedback = document.getElementById(`feedback${num}`);
+      
+      // Mots-clés attendus pour chaque phrase
+      const keywords = {
+        1: ['inspiration', 'création', 'conception', 'démarche'],
+        2: ['observation', 'extraction', 'enseignements']
+      };
+      
+      const foundKeywords = keywords[num].filter(word => answer.includes(word));
+      
+      if (foundKeywords.length >= 2) {
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Excellent ! Vous avez bien nominalisé les actions principales.';
+      } else if (foundKeywords.length === 1) {
+        feedback.className = 'feedback suggestion';
+        feedback.textContent = 'Bonne tentative ! Essayez de nominaliser davantage d'actions.';
+      } else {
+        feedback.className = 'feedback suggestion';
+        feedback.textContent = 'Pensez à transformer les verbes en noms : "s\'inspirer" → "l\'inspiration", "créer" → "la création", etc.';
+      }
+      
+      feedback.style.display = 'block';
+    }
+
+    function toggleSolutions() {
+      const solutionsBox = document.getElementById('solutions');
+      const btn = document.querySelector('.solutions-btn');
+      
+      if (solutionsBox.style.display === 'block') {
+        solutionsBox.style.display = 'none';
+        btn.textContent = 'Voir les solutions';
+      } else {
+        solutionsBox.style.display = 'block';
+        btn.textContent = 'Masquer les solutions';
+      }
+    }
+  </script>
+</body>
+</html>

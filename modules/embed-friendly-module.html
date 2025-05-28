@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Nominalisation - Exercices</title>
+  <style>
+    /* Reset et base pour embed */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: transparent; /* Important pour Notion */
+      color: #37352f; /* Couleur texte Notion */
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 20px;
+    }
+
+    /* Container principal ajusté pour embed */
+    .embed-container {
+      max-width: 100%;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Titre adapté */
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #37352f;
+    }
+
+    /* Badge simplifié */
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 500;
+      background: #FF9500;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    /* Instructions */
+    .instructions {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #37352f;
+    }
+
+    /* Exemple box */
+    .example-box {
+      background: #F7F6F3;
+      border-left: 3px solid #FF9500;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .example-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #FF9500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .example-content {
+      font-style: italic;
+      color: #37352f;
+    }
+
+    .example-content strong {
+      color: #FF9500;
+      font-weight: 600;
+    }
+
+    /* Exercice items */
+    .exercise-item {
+      background: #F7F6F3;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .sentence-number {
+      font-weight: 600;
+      color: #FF9500;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .original-sentence {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      padding: 12px;
+      background: white;
+      border-radius: 4px;
+      border: 1px solid #E9E7E4;
+    }
+
+    /* Textarea ajusté pour Notion */
+    textarea {
+      width: 100%;
+      min-height: 50px;
+      padding: 8px 12px;
+      border: 1px solid #E9E7E4;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+      background: white;
+      color: #37352f;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #FF9500;
+      box-shadow: 0 0 0 2px rgba(255, 149, 0, 0.2);
+    }
+
+    /* Boutons */
+    .check-btn {
+      background: #FF9500;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+    }
+
+    .check-btn:hover {
+      background: #E68600;
+    }
+
+    .solutions-btn {
+      background: #2F80ED;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin: 20px auto 0;
+      display: block;
+    }
+
+    .solutions-btn:hover {
+      background: #1A6DD4;
+    }
+
+    /* Feedback */
+    .feedback {
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .feedback.correct {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .feedback.suggestion {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    /* Solutions box */
+    .solutions-box {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      background: #F0F9FF;
+      border-radius: 4px;
+      border: 1px solid #BAE6FD;
+    }
+
+    .solutions-title {
+      font-weight: 600;
+      color: #0369A1;
+      margin-bottom: 12px;
+    }
+
+    .solution-item {
+      margin-bottom: 8px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .solution-item strong {
+      color: #0369A1;
+    }
+
+    /* Responsive pour petits embeds */
+    @media (max-width: 500px) {
+      .embed-container {
+        padding: 16px;
+      }
+      
+      h2 {
+        font-size: 20px;
+      }
+      
+      .instructions {
+        font-size: 14px;
+      }
+    }
+
+    /* Ajustement hauteur pour embed */
+    .embed-container {
+      min-height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div class="embed-container">
+    <h2>Nominalisation et modalisation</h2>
+    
+    <span class="badge">Reformulation</span>
+
+    <p class="instructions">
+      Reformulez ces phrases en utilisant des substantifs (noms) plutôt que des verbes, tout en conservant le sens :
+    </p>
+
+    <div class="example-box">
+      <div class="example-title">Exemple</div>
+      <div class="example-content">
+        <p>"Les scientifiques étudient la nature pour développer de nouvelles technologies."</p>
+        <p>→ "L'<strong>étude</strong> de la nature par les scientifiques permet le <strong>développement</strong> de nouvelles technologies."</p>
+      </div>
+    </div>
+
+    <div class="exercise-item">
+      <div class="sentence-number">Phrase 1</div>
+      <div class="original-sentence">
+        "Le biomimétisme, c'est s'inspirer de la nature pour créer de nouvelles technologies durables."
+      </div>
+      <textarea id="answer1" placeholder="Votre reformulation..."></textarea>
+      <button class="check-btn" onclick="checkAnswer(1)">Vérifier</button>
+      <div id="feedback1" class="feedback"></div>
+    </div>
+
+    <div class="exercise-item">
+      <div class="sentence-number">Phrase 2</div>
+      <div class="original-sentence">
+        "Léonard de Vinci observe la nature et en tire des enseignements pour ses inventions."
+      </div>
+      <textarea id="answer2" placeholder="Votre reformulation..."></textarea>
+      <button class="check-btn" onclick="checkAnswer(2)">Vérifier</button>
+      <div id="feedback2" class="feedback"></div>
+    </div>
+
+    <button class="solutions-btn" onclick="toggleSolutions()">Voir les solutions</button>
+    
+    <div id="solutions" class="solutions-box">
+      <div class="solutions-title">Solutions possibles</div>
+      <div class="solution-item">
+        <strong>1.</strong> "Le biomimétisme repose sur l'inspiration issue de la nature pour la création de nouvelles technologies durables."
+      </div>
+      <div class="solution-item">
+        <strong>2.</strong> "L'observation de la nature par Léonard de Vinci lui permet l'extraction d'enseignements applicables à ses inventions."
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkAnswer(num) {
+      const answer = document.getElementById(`answer${num}`).value.toLowerCase();
+      const feedback = document.getElementById(`feedback${num}`);
+      
+      const keywords = {
+        1: ['inspiration', 'création', 'conception', 'démarche'],
+        2: ['observation', 'extraction', 'enseignements']
+      };
+      
+      const foundKeywords = keywords[num].filter(word => answer.includes(word));
+      
+      if (foundKeywords.length >= 2) {
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Excellent ! Vous avez bien nominalisé les actions principales.';
+      } else if (foundKeywords.length === 1) {
+        feedback.className = 'feedback suggestion';
+        feedback.textContent = 'Bonne tentative ! Essayez de nominaliser davantage d\'actions.';
+      } else {
+        feedback.className = 'feedback suggestion';
+        feedback.textContent = 'Pensez à transformer les verbes en noms : "s\'inspirer" → "l\'inspiration"';
+      }
+      
+      feedback.style.display = 'block';
+    }
+
+    function toggleSolutions() {
+      const solutionsBox = document.getElementById('solutions');
+      const btn = document.querySelector('.solutions-btn');
+      
+      if (solutionsBox.style.display === 'block') {
+        solutionsBox.style.display = 'none';
+        btn.textContent = 'Voir les solutions';
+      } else {
+        solutionsBox.style.display = 'block';
+        btn.textContent = 'Masquer les solutions';
+      }
+    }
+
+    // Ajuster la hauteur pour Notion
+    function adjustHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({ height: height }, '*');
+    }
+
+    // Appeler quand le contenu change
+    window.addEventListener('load', adjustHeight);
+    window.addEventListener('resize', adjustHeight);
+  </script>
+</body>
+</html>
